@@ -8,9 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jamie.lotterysimulator.R
 import com.jamie.lotterysimulator.databinding.ActivityMainBinding
+import com.jamie.lotterysimulator.model.Constants.SlotList
 import com.jamie.lotterysimulator.model.Slot
 import kotlin.random.Random
 
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -45,7 +49,18 @@ class MainActivity : AppCompatActivity() {
         init()
     }
     private fun init(){
+
+        SlotList.boilerPlate()
+
         slotRecycler = binding.slots
+        val slotData = SlotList.getSlotNumbers()
+
+        if(slotData!!.isNotEmpty()||slotData!=null) {
+            val customAdapter = SlotRecyclerRecyclerAdapter(slotData,this)
+
+            slotRecycler.layoutManager = LinearLayoutManager(this)
+            slotRecycler.adapter = customAdapter
+        }
         generateBtn = binding.createNewButton
 
         slotOne = binding.lottoNoOne
@@ -73,11 +88,18 @@ class MainActivity : AppCompatActivity() {
         slotSix.text = winningTicket.slots[5].toString()
 
         generateBtn.setOnClickListener {
-
+            for (i in 0..5){
+                slotnumbers[i] = Random.nextInt(0,36)
+            }
+            winningTicket.slots = slotnumbers
+            slotOne.text = winningTicket.slots[0].toString()
+            slotTwo.text = winningTicket.slots[1].toString()
+            slotThree.text = winningTicket.slots[2].toString()
+            slotFour.text = winningTicket.slots[3].toString()
+            slotFive.text = winningTicket.slots[4].toString()
+            slotSix.text = winningTicket.slots[5].toString()
         }
-    }
 
-//    private fun initTicket(){
-//        winningTicket((1,2,3,4,5,6),3)
-//    }
+
+    }
 }

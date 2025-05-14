@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.jamie.lotterysimulator"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.jamie.lotterysimulator"
