@@ -10,15 +10,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-   <TextView
-        android:id="@+id/lotto_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Daily lotto guesser"
-        android:textSize="32sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="20dp"/>
     <LinearLayout
         android:id="@+id/lotto_number_linear"
         android:layout_width="400dp"
@@ -27,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:orientation="horizontal"
-        android:layout_below="@+id/lotto_title">
+        >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/numberOne"
@@ -226,7 +217,9 @@
         android:layout_height="150dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="10dp"
-        android:layout_below="@id/slots">
+        android:layout_below="@id/slots"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="30dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -243,8 +236,7 @@
                 android:text="Add slot"
                 android:textSize="20sp"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

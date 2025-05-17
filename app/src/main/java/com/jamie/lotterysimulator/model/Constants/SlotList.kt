@@ -6,30 +6,26 @@ import com.jamie.lotterysimulator.model.Slot
 
 object SlotList {
 
-    private var slotnumbers:ArrayList<Slot>? = null
-
+    private var slotNumbers:ArrayList<Slot> = arrayListOf()
+    private var WinningTicket:ArrayList<Int> = arrayListOf()
     private const val TAG = "SlotList"
 
-    fun getSlotNumbers(): ArrayList<Slot>? {
-            return slotnumbers
+    fun getSlotNumbers(): ArrayList<Slot> {
+            return slotNumbers
     }
 
-    fun setSlotNumbers(slotnumbers:ArrayList<Slot>){
-        this.slotnumbers = slotnumbers
+    fun setSlotNumbers(newSlotNumbers: ArrayList<Int>){
+            val newSlot = Slot(newSlotNumbers,0)
+            slotNumbers.add(newSlot)
     }
 
+    fun getWinningTicket():ArrayList<Int>{
+        return WinningTicket
 
-    fun boilerPlate(){
-        Log.d(TAG,"boilerPlate")
+    }
 
-        val slotOne = Slot(arrayListOf(3,4,36,5,12,34),0)
-        val slotTwo = Slot(arrayListOf(32,4,4,5,12,3),0)
-        val slotThree = Slot(arrayListOf(32,4,4,5,12,3),0)
-        val slotFour = Slot(arrayListOf(32,4,4,5,12,3),0)
-        val slotFive= Slot(arrayListOf(32,4,4,5,12,3),0)
-        val slotSix = Slot(arrayListOf(32,4,4,5,12,3),0)
-
-        slotnumbers = arrayListOf(slotOne,slotTwo,slotThree,slotFour,slotFive,slotSix)
+    fun setWinningTicket(newWinningTicket:ArrayList<Int>){
+        WinningTicket = newWinningTicket
 
     }
 

@@ -4,5 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#d90209</color>
     <color name="light_blue">#026dd9</color>
-    <color name="yellow">#f8fc03</color>
+    <color name="light_blue_half_opacity">#85026DD9</color>
+    <color name="yellow">#ffd900</color>
+    <color name="light_yellow">#99F8FC03</color>
+    <color name="grey"> #cacbcc</color>
 </resources>

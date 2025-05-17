@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jamie.lotterysimulator.R
 import com.jamie.lotterysimulator.model.Slot
 
-class SlotRecyclerRecyclerAdapter(private val items: List<Slot>, private val context: Context):
+class SlotRecyclerRecyclerAdapter(private var items: List<Slot>, private val context: Context):
     RecyclerView.Adapter<SlotRecyclerRecyclerAdapter.ItemViewHolder>(){
 
     companion object{
@@ -41,12 +41,19 @@ class SlotRecyclerRecyclerAdapter(private val items: List<Slot>, private val con
             holder.lottoTextView[i].text = model.slots[i].toString()
         }
 
+        holder.winningNumbers.text = model.winningNumbers.toString()
+
         holder.changeNumbers.setOnClickListener{
             var toChangeNumbers = Intent(context, ChangeNumbers::class.java)
             toChangeNumbers.putExtra("number", position)
             context.startActivity(toChangeNumbers)
         }
 
+    }
+
+    fun updateData(newList: List<Slot>) {
+        items = newList
+        notifyDataSetChanged()
     }
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

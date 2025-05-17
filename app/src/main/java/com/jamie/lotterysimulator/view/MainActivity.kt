@@ -1,6 +1,8 @@
 package com.jamie.lotterysimulator.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -18,12 +20,17 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
+    companion object{
+        private const val TAG = "MainActivity"
+    }
+
+
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var slotRecycler: RecyclerView
     private lateinit var generateBtn: CardView
+    private lateinit var addSlotBtn: CardView
 
-    private lateinit var winningTicket:Slot
 
     private lateinit var slotOne:TextView
     private lateinit var slotTwo:TextView
@@ -31,6 +38,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var slotFour:TextView
     private lateinit var slotFive:TextView
     private lateinit var slotSix: TextView
+
+    private lateinit var slotData:ArrayList<Slot>
+
 
 
 
@@ -49,19 +59,15 @@ class MainActivity : AppCompatActivity() {
         init()
     }
     private fun init(){
-
-        SlotList.boilerPlate()
-
         slotRecycler = binding.slots
-        val slotData = SlotList.getSlotNumbers()
+        slotData = SlotList.getSlotNumbers()
 
-        if(slotData!!.isNotEmpty()||slotData!=null) {
-            val customAdapter = SlotRecyclerRecyclerAdapter(slotData,this)
+        val customAdapter = SlotRecyclerRecyclerAdapter(slotData,this)
+        slotRecycler.layoutManager = LinearLayoutManager(this)
+        slotRecycler.adapter = customAdapter
 
-            slotRecycler.layoutManager = LinearLayoutManager(this)
-            slotRecycler.adapter = customAdapter
-        }
         generateBtn = binding.createNewButton
+        addSlotBtn = binding.addSlotButton
 
         slotOne = binding.lottoNoOne
         slotTwo = binding.lottoNoTwo
@@ -70,36 +76,60 @@ class MainActivity : AppCompatActivity() {
         slotFive = binding.lottoNoFive
         slotSix = binding.lottoNoSix
 
-        var slotnumbers = arrayListOf(
-            Random.nextInt(0,36),
-            Random.nextInt(0,36),
-            Random.nextInt(0,36),
-            Random.nextInt(0,36),
-            Random.nextInt(0,36),
-            Random.nextInt(0,36))//generates numbers between one and 36
+        var randomNumberArray = arrayListOf(
+            Random.nextInt(1,36),
+            Random.nextInt(1,36),
+            Random.nextInt(1,36),
+            Random.nextInt(1,36),
+            Random.nextInt(1,36),
+            Random.nextInt(1,36))//generates numbers between one and 36
 
-        winningTicket = Slot(slotnumbers, 3)//creates the winning when the user first enters
+        SlotList.setWinningTicket(randomNumberArray)//creates the winning when the user first enters
 
-        slotOne.text = winningTicket.slots[0].toString()
-        slotTwo.text = winningTicket.slots[1].toString()
-        slotThree.text = winningTicket.slots[2].toString()
-        slotFour.text = winningTicket.slots[3].toString()
-        slotFive.text = winningTicket.slots[4].toString()
-        slotSix.text = winningTicket.slots[5].toString()
+
+        var winningTicket = SlotList.getWinningTicket()
+        winningAmount(winningTicket)
+        slotOne.text = winningTicket[0].toString()
+        slotTwo.text = winningTicket[1].toString()
+        slotThree.text = winningTicket[2].toString()
+        slotFour.text = winningTicket[3].toString()
+        slotFive.text = winningTicket[4].toString()
+        slotSix.text = winningTicket[5].toString()
 
         generateBtn.setOnClickListener {
             for (i in 0..5){
-                slotnumbers[i] = Random.nextInt(0,36)
+                randomNumberArray[i] = Random.nextInt(0,36)
             }
-            winningTicket.slots = slotnumbers
-            slotOne.text = winningTicket.slots[0].toString()
-            slotTwo.text = winningTicket.slots[1].toString()
-            slotThree.text = winningTicket.slots[2].toString()
-            slotFour.text = winningTicket.slots[3].toString()
-            slotFive.text = winningTicket.slots[4].toString()
-            slotSix.text = winningTicket.slots[5].toString()
+            winningTicket = randomNumberArray
+            slotOne.text = winningTicket[0].toString()
+            slotTwo.text = winningTicket[1].toString()
+            slotThree.text = winningTicket[2].toString()
+            slotFour.text = winningTicket[3].toString()
+            slotFive.text = winningTicket[4].toString()
+            slotSix.text = winningTicket[5].toString()
+
+            customAdapter.updateData(slotData)
         }
 
+        addSlotBtn.setOnClickListener {
+            val intent = Intent(this, AddSlot::class.java)
+            startActivity(intent)
+        }
+
+    }
+
+    private fun winningAmount(winningTicket:ArrayList<Int>){
+        var winningAmount = 0
+        for(ticket in slotData){
+            for(slotVals in ticket.slots)
+              for(j in winningTicket ){
+                if(slotVals == j){
+                    winningAmount++
+                }
+            }
+            slotData[slotData.indexOf(ticket)].winningNumbers = winningAmount
+            Log.d(TAG, "winningAmount: ${slotData[slotData.indexOf(ticket)].winningNumbers}")
+        }
 
     }
 }
