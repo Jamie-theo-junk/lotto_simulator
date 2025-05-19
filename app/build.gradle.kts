@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.jamie.lotterysimulator"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.jamie.lotterysimulator"
@@ -48,4 +48,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.google.android.gms:play-services-ads:24.2.0")
 }

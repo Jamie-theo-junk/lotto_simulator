@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LotterySimulator"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5672195872456028~8304030227"/>
+        <activity
+            android:name=".view.AddSlot"
+            android:exported="true" />
+        <activity
+            android:name=".view.ChangeNumbers"
+            android:exported="false" />
         <activity
             android:name=".view.MainActivity"
             android:exported="true">
