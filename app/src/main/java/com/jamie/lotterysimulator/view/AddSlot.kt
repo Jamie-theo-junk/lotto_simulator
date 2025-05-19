@@ -25,7 +25,6 @@ class AddSlot : AppCompatActivity(), OnClickListener{
     private lateinit var slotThree: CardView
     private lateinit var slotFour: CardView
     private lateinit var slotFive: CardView
-    private lateinit var slotSix:CardView
     private lateinit var context: Context
 
     private lateinit var confirmButton:CardView
@@ -42,7 +41,7 @@ class AddSlot : AppCompatActivity(), OnClickListener{
         get() = _selectedNumberCount
         set(value) {
             _selectedNumberCount = value
-            if (value == 6) {
+            if (value == 5) {
                 binding.confirmButton.visibility = View.VISIBLE
             } else {
                 binding.confirmButton.visibility = View.GONE
@@ -78,7 +77,6 @@ class AddSlot : AppCompatActivity(), OnClickListener{
             3 to 0,
             4 to 0,
             5 to 0,
-            6 to 0
         )//initiates the selectedNumbers hash map
 
 
@@ -94,10 +92,9 @@ class AddSlot : AppCompatActivity(), OnClickListener{
         slotThree = binding.chosenCard3
         slotFour = binding.chosenCard4
         slotFive = binding.chosenCard5
-        slotSix = binding.chosenCard6
 
 
-        chosenSlots = listOf(slotOne,slotTwo,slotThree,slotFour,slotFive,slotSix)//puts the chosen slots in a list
+        chosenSlots = listOf(slotOne,slotTwo,slotThree,slotFour,slotFive)//puts the chosen slots in a list
 
         for(slot in chosenSlots){
             slot.visibility = View.INVISIBLE
@@ -137,7 +134,7 @@ class AddSlot : AppCompatActivity(), OnClickListener{
 
             Log.d(TAG, "Deselected slotNumber $slotNumber from key $existingKey")
         }
-        else if (selectedNumberCount < 6) {
+        else if (selectedNumberCount < 5) {
             // Find first available key (with value 0)
             val availableKey = selectedNumbers.entries.find { it.value == 0 }?.key
             Log.d(TAG, "slotNumbers: available key: $availableKey")

@@ -35,7 +35,7 @@ class SlotRecyclerRecyclerAdapter(private var items: List<Slot>, private val con
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val model = items[position]
 
-        for (i in 0..5){
+        for (i in 0..4){
 
             Log.d(TAG, "onBindViewHolder: ")
             holder.lottoTextView[i].text = model.slots[i].toString()
@@ -62,11 +62,10 @@ class SlotRecyclerRecyclerAdapter(private var items: List<Slot>, private val con
         val lottoNoThree = itemView.findViewById<TextView>(R.id.lotto_no_three)
         val lottoNoFour = itemView.findViewById<TextView>(R.id.lotto_no_four)
         val lottoNoFive = itemView.findViewById<TextView>(R.id.lotto_no_five)
-        val lottoNoSix = itemView.findViewById<TextView>(R.id.lotto_no_six)
         val winningNumbers = itemView.findViewById<TextView>(R.id.winningNumbers)
         val changeNumbers = itemView.findViewById<CardView>(R.id.slotCardView)
 
-        val lottoTextView = listOf(lottoNoOne, lottoNoTwo, lottoNoThree, lottoNoFour, lottoNoFive, lottoNoSix)
+        val lottoTextView = listOf(lottoNoOne, lottoNoTwo, lottoNoThree, lottoNoFour, lottoNoFive)
 
     }
 }
