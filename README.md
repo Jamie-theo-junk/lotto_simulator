@@ -1,5 +1,6 @@
 # Lottery Simulator
 ![Main Screen](./screenshots/main_view.png)
+
 **Lottery Simulator** is an Android app developed in Android Studio that simulates your chances of winning the lottery. It offers a simple, educational experience to show how lottery odds actually work.
 
 ---
