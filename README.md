@@ -1,5 +1,5 @@
 # Lottery Simulator
-
+![Main Screen](./screenshots/main_view.png)
 **Lottery Simulator** is an Android app developed in Android Studio that simulates your chances of winning the lottery. It offers a simple, educational experience to show how lottery odds actually work.
 
 ---
@@ -31,7 +31,7 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/lottery-simulator.git
+git clone https://github.com/Jamie-theo-junk/lottery-simulator.git
 ```
 ### 2. Open the Project
 Launch Android Studio
